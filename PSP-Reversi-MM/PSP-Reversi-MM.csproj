@@ -16,6 +16,7 @@
   <ItemGroup>
     <Resource Include="Images\reveri.jpg" />
     <Resource Include="Images\reversi2.jpg" />
+    <Resource Include="reversi2.jpg" />
   </ItemGroup>
 
 </Project>

@@ -19,13 +19,19 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button Margin ="5 5 10 0" Grid.Column ="0" Content="New Game" />
-                <Button Margin ="10 5 5 0" Grid.Column ="1" Content="Settings" />
+                <Button Margin ="5 5 10 0" Grid.Column ="0" Content="New Game" Click="Button_Click" />
+                <Button Margin ="10 5 5 0" Grid.Column ="1" Content="Settings" Click="Button_Click_1" />
                 <!--StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"-->
             </Grid>
             <TextBlock Text="Welcome to Reversi!" FontSize="35" TextAlignment="Center" FontStyle ="Italic" />
+            <ComboBox Name="ComboBox1" Width="200" SelectionChanged="ComboBox1_SelectionChanged">
+                <ComboBoxItem Content="Easy" IsSelected="True"/>
+                <ComboBoxItem Content="Medium" IsSelected="False"/>
+                <ComboBoxItem Content="Hard" IsSelected="False"/>
+                
+            </ComboBox>
             <Grid>
-                <Image Source="/reversi2.jpg" Margin="94,2,94,1"/>
+                <Image Source="/reversi2.jpg" Margin="144,10,144,-249"/>
             </Grid>
         </StackPanel>
     </Border>

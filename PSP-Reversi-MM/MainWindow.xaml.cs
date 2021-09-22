@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PSP_Reversi_MM.Logic;
+using PSP_Reversi_MM.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,17 +24,25 @@ namespace PSP_Reversi_MM
     {
         public MainWindow()
         {
+
             InitializeComponent();
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            GameWindow window = new GameWindow();
+            window.Show();
         }
 
-        public void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            Settings settings = new Settings();
+            settings.Show();
+        }
 
+        private void ComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
         }
     }
 }
