@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{BD16C641-9F39-48EC-A941-78220D1F4DE6}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\black_piece.png = ..\..\..\Desktop\black_piece.png
 		..\..\..\Desktop\green_color.png = ..\..\..\Desktop\green_color.png
+		..\..\..\Desktop\white_piece.png = ..\..\..\Desktop\white_piece.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSP-Reversi-MM-Winforms", "PSP-Reversi-MM-Winforms\PSP-Reversi-MM-Winforms.csproj", "{FBD0EEA0-6845-4A7B-A978-23855D532D31}"

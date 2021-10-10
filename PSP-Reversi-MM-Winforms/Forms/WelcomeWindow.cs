@@ -1,9 +1,12 @@
-﻿using System;
+﻿using PSP_Reversi_MM_Winforms.Logic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PSP_Reversi_MM_Winforms.Forms
@@ -15,10 +18,11 @@ namespace PSP_Reversi_MM_Winforms.Forms
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             SettingsWindow settingsWindow = new SettingsWindow();
             settingsWindow.Show();
+
         }
 
         private void button1_Click(object sender, EventArgs e)

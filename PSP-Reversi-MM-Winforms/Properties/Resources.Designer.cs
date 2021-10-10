@@ -63,9 +63,29 @@ namespace PSP_Reversi_MM_Winforms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap black_piece {
+            get {
+                object obj = ResourceManager.GetObject("black_piece", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap green_color {
             get {
                 object obj = ResourceManager.GetObject("green_color", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap white_piece {
+            get {
+                object obj = ResourceManager.GetObject("white_piece", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
