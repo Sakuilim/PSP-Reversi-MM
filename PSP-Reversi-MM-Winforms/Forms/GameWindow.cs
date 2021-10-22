@@ -1,4 +1,5 @@
-﻿using PSP_Reversi_MM_Winforms.Logic;
+﻿using PSP_Reversi_MM_Winforms.Constants;
+using PSP_Reversi_MM_Winforms.Logic;
 using PSP_Reversi_MM_Winforms.Model;
 using PSP_Reversi_MM_Winforms.Properties;
 using System;
@@ -15,14 +16,16 @@ namespace PSP_Reversi_MM_Winforms.Forms
 {
     public partial class GameWindow : Form
     {
-        
-        public GameWindow() 
+        InitiateGameSys gameSystem = new InitiateGameSys();
+        LEDButton[,] leds = new LEDButton[8, 8];
+        int turn = 1;
+        public GameWindow()
         {
             InitializeComponent();
-            TableData tableData = new TableData();
-            TableLogic.Print_Table(tableData);
+            gameSystem.print_Table(leds);
+            gameSystem.Return_GroupBox(groupBox1, leds);
+           
         }
-       
         public void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -33,36 +36,20 @@ namespace PSP_Reversi_MM_Winforms.Forms
 
         }
 
-        private void Make_Table(TableData tableData)
+        private void label1_Click(object sender, EventArgs e)
         {
-            if(tableData.tableSize[3,3] == 2)
-            {
-               // pictureBox28.Image = Properties.Resources.white_piece;
 
-            }
-            if(tableData.tableSize[3, 4] == 1)
-            {
-               // pictureBox29.Image = Properties.Resources.black_piece;
-            }
-            if(tableData.tableSize[4, 3] == 1)
-            {
-               // pictureBox61.Image = Properties.Resources.white_piece;
-
-            }
-            if(tableData.tableSize[4, 4] == 2)
-            {
-               // pictureBox60.Image = Properties.Resources.black_piece;
-            }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
-            button29.Image = Properties.Resources.black_piece;
-        }
-
-        private void button29_Click(object sender, EventArgs e)
-        {
-
+            if (turn % 2 > 0)
+            {
+                label2.Text = "Black";
+            }
+            else
+            {
+                label2.Text = "White";
+            }
         }
     }
 }

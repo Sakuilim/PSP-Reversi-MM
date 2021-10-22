@@ -7,6 +7,6 @@ namespace PSP_Reversi_MM_Winforms.Model
     public class TableData
     {
         public int totalAmountPieces { get; set; }
-        public int[,] tableSize = new int[8, 8];
+        public char[,] tableSize = new char[8,8];
     }
 }
