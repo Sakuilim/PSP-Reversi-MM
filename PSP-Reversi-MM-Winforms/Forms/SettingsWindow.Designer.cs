@@ -1,7 +1,7 @@
 ﻿
-namespace PSP_Reversi_MM
+namespace PSP_Reversi_MM_Winforms.Forms
 {
-    partial class Form1
+    partial class SettingsWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,34 @@ namespace PSP_Reversi_MM
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.SuspendLayout();
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(67, 60);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(121, 29);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // SettingsWindow
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.Controls.Add(this.checkBox1);
+            this.Name = "SettingsWindow";
+            this.Text = "SettingsWindow";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
-

@@ -3,9 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSP-Reversi-MM", "PSP-Reversi-MM\PSP-Reversi-MM.csproj", "{DB2A17F6-9FA8-4636-986F-A26473B7E5EB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{546F9FF6-CD2B-4770-9840-62096560BB40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSP-Reversi_MM", "PSP-Reversi_MM\PSP-Reversi_MM.csproj", "{96A0F4DC-2632-48A7-8082-9017650F4947}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{BD16C641-9F39-48EC-A941-78220D1F4DE6}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\black_piece.png = ..\..\..\Desktop\black_piece.png
+		..\..\..\Desktop\green_color.png = ..\..\..\Desktop\green_color.png
+		..\..\..\Desktop\white_piece.png = ..\..\..\Desktop\white_piece.png
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSP-Reversi-MM-Winforms", "PSP-Reversi-MM-Winforms\PSP-Reversi-MM-Winforms.csproj", "{FBD0EEA0-6845-4A7B-A978-23855D532D31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,17 +20,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DB2A17F6-9FA8-4636-986F-A26473B7E5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB2A17F6-9FA8-4636-986F-A26473B7E5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB2A17F6-9FA8-4636-986F-A26473B7E5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB2A17F6-9FA8-4636-986F-A26473B7E5EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96A0F4DC-2632-48A7-8082-9017650F4947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96A0F4DC-2632-48A7-8082-9017650F4947}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96A0F4DC-2632-48A7-8082-9017650F4947}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96A0F4DC-2632-48A7-8082-9017650F4947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBD0EEA0-6845-4A7B-A978-23855D532D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBD0EEA0-6845-4A7B-A978-23855D532D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBD0EEA0-6845-4A7B-A978-23855D532D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBD0EEA0-6845-4A7B-A978-23855D532D31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BD16C641-9F39-48EC-A941-78220D1F4DE6} = {546F9FF6-CD2B-4770-9840-62096560BB40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C293F2D-C5CF-425A-AB98-A4BBCB167C75}
