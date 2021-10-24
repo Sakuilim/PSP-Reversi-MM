@@ -14,7 +14,7 @@ namespace PSP_Reversi_MM_Winforms.Logic
     public class InitiateGameSys : IInitiateGameSys
     {
         ColorTurningLogic colorTurningLogic = new ColorTurningLogic();
-        char color = 'g';
+        string color = "green";
         int sk = 1;
         public LEDButton[,] print_Table(LEDButton[,] leds)
         {
@@ -43,18 +43,18 @@ namespace PSP_Reversi_MM_Winforms.Logic
         {
             if (sk % 2 > 0)
             {
-                color = 'b';
+                color = "black";
             }
             else
             {
-                color = 'w';
+                color = "white";
             }
             LEDButton myButton = sender as LEDButton;
             string[] coord = myButton.Name.Split(':');
+            MessageBox.Show(myButton.Tag + " ");
             int y = Int32.Parse(coord[0]);
             int x = Int32.Parse(coord[1]);
-            MessageBox.Show(" " + y + " " + x + " " + leds[y, x].Tag);
-            if (PlacePiece(color, y, x, myButton, leds))
+            if (PlacePiece(color, y, x, leds))
             {
                 sk++;
             }
@@ -67,9 +67,9 @@ namespace PSP_Reversi_MM_Winforms.Logic
 
             return controls;
         }
-        public bool PlacePiece(char color, int row, int col, LEDButton led, LEDButton[,] leds)
+        public bool PlacePiece(string color, int row, int col, LEDButton[,] leds)
         {
-            if (IsLegalMove(color, led, col, row, leds))
+            if (IsLegalMove(color, col, row, leds))
             {
                 return true;
             }
@@ -79,142 +79,157 @@ namespace PSP_Reversi_MM_Winforms.Logic
                 return false;
             }
         }
-        public bool IsLegalMove(char color, LEDButton led, int row, int col, LEDButton[,] leds)
+        public bool IsLegalMove(string color, int row, int col, LEDButton[,] leds)
         {
             int tmp = 0;
-            if ((string)leds[row, col].Tag != "green")
+            if ((string)leds[row, col].Tag != "green" && (string)leds[row, col].Tag == color)
             {
                 MessageBox.Show("Error, this position is already occupied by the other player.");
                 return false;
             }
 
             string[] directions = { "topLeft", "topCenter", "topRight", "rightCenter", "bottomRight", "bottomCenter", "bottomLeft", "leftCenter" };
-
+            bool success = false;
             for (int i = 0; i < 8; i++)
             {
-                if (CheckDirection(color, row, col, directions[i], led, leds) > 0)
+                if (CheckDirection(color, row, col, directions[i], leds) > 0)
                 {
-                    tmp = CheckDirection(color, row, col, directions[i], led, leds);
+                    tmp = CheckDirection(color, row, col, directions[i], leds);
                     if (directions[i] == "topLeft")
                     {
-                        colorTurningLogic.colorTurner(color,row, col, -1, -1, leds, tmp);
+                        colorTurningLogic.colorTurner(color, row, col, -1, -1, leds, tmp);
+                        success = true;
                     }
                     else if (directions[i] == "topCenter")
                     {
-                        colorTurningLogic.colorTurner(color,row, col, -1, 0, leds, tmp);
+                        colorTurningLogic.colorTurner(color, row, col, -1, 0, leds, tmp);
+                        success = true;
                     }
                     else if (directions[i] == "topRight")
                     {
                         colorTurningLogic.colorTurner(color, row, col, -1, 1, leds, tmp);
+                        success = true;
                     }
                     else if (directions[i] == "rightCenter")
                     {
                         colorTurningLogic.colorTurner(color, row, col, 0, 1, leds, tmp);
+                        success = true;
                     }
                     else if (directions[i] == "bottomRight")
                     {
                         colorTurningLogic.colorTurner(color, row, col, 1, 1, leds, tmp);
+                        success = true;
                     }
                     else if (directions[i] == "bottomCenter")
                     {
                         colorTurningLogic.colorTurner(color, row, col, 1, 0, leds, tmp);
+                        success = true;
                     }
                     else if (directions[i] == "bottomLeft")
                     {
                         colorTurningLogic.colorTurner(color, row, col, 1, -1, leds, tmp);
+                        success = true;
                     }
                     else if (directions[i] == "leftCenter")
                     {
                         colorTurningLogic.colorTurner(color, row, col, 0, -1, leds, tmp);
+                        success = true;
                     }
-                    return true;
+
                 }
             }
-            return false;
+            return success;
         }
-        public List<LEDButton> MakeArrayOfLine(char color, int newRow, int newCol, int rowModifier, int colModifier, LEDButton led, LEDButton[,] leds)
+        public List<LEDButton> MakeArrayOfLine(string color, int newRow, int newCol, int rowModifier, int colModifier, LEDButton[,] leds)
         {
             List<LEDButton> array = new List<LEDButton>();
 
-            int fakeNewRow = newRow;
-            int fakeNewCol = newCol;
-            fakeNewRow += rowModifier;
-            fakeNewCol += colModifier;
-            if ((string)leds[fakeNewRow, fakeNewCol].Tag == "green" || newRow < 0 || newRow >= 8 || newCol < 0 || newCol >= 8)
+            newRow += rowModifier;
+            newCol += colModifier;
+            if (newRow < 0 || newRow >= 8 || newCol < 0 || newCol >= 8)
+            {
+                return array;
+            }
+            else if ((string)leds[newRow, newCol].Tag == "green")
             {
                 return array;
             }
             else
             {
-                array.Add(leds[fakeNewRow, fakeNewCol]);
+                array.Add(leds[newRow, newCol]);
                 do
                 {
-                    fakeNewRow += rowModifier;
-                    fakeNewCol += colModifier;
-                    array.Add(leds[fakeNewRow, fakeNewCol]);
+                    
+                    newRow += rowModifier;
+                    newCol += colModifier;
+                    if (newRow < 0 || newRow >= 8 || newCol < 0 || newCol >= 8)
+                    {
+                        return array;
+                    }
+                    array.Add(leds[newRow, newCol]);
 
-                } while (fakeNewRow > 0 && fakeNewCol > 0 && fakeNewRow < 8 - 1 && fakeNewCol < 8 - 1);
+                } while (newRow > 0 && newCol > 0 && newRow < 8 - 1 && newCol < 8 - 1);
                 return array;
             }
         }
-        public int checkArrayForColorLine(char color, List<LEDButton> array)
+        public int checkArrayForColorLine(string color, List<LEDButton> array)
         {
-            string terminatingTerm;
-            if (color == 'w')
-            {
-                terminatingTerm = "white";
-            }
-            else
-            {
-                terminatingTerm = "black";
-            }
+
             int numOpposingColor = 0;
             for (int i = 0; i < array.Count; i++)
             {
 
-                if ((string)array[i].Tag == terminatingTerm)
+                if ((string)array[i].Tag == color)
                 {
                     if (numOpposingColor > 0)
                     {
                         return numOpposingColor;
                     }
+                    else
+                    {
+                        return 0;
+                    }
                 }
-                else if ((string)array[i].Tag != "green")
+                else if ((string)array[i].Tag == "green")
+                {
+                    return 0;
+                }
+                else
                 {
                     numOpposingColor++;
                 }
             }
-            return numOpposingColor;
+            return 0;
         }
-        
-        public int CheckDirection(char color, int newRow, int newCol, string direction, LEDButton led, LEDButton[,] leds)
+
+        public int CheckDirection(string color, int newRow, int newCol, string direction, LEDButton[,] leds)
         {
             List<LEDButton> lineArray;
             switch (direction)
             {
                 case "topLeft":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, -1, -1, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, -1, -1, leds);
                     return checkArrayForColorLine(color, lineArray);
                 case "topCenter":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, -1, 0, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, -1, 0, leds);
                     return checkArrayForColorLine(color, lineArray);
                 case "topRight":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, -1, 1, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, -1, 1, leds);
                     return checkArrayForColorLine(color, lineArray);
                 case "rightCenter":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, 0, 1, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, 0, 1, leds);
                     return checkArrayForColorLine(color, lineArray);
                 case "bottomRight":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, 1, 1, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, 1, 1, leds);
                     return checkArrayForColorLine(color, lineArray);
                 case "bottomCenter":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, 1, 0, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, 1, 0, leds);
                     return checkArrayForColorLine(color, lineArray);
                 case "bottomLeft":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, 1, -1, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, 1, -1, leds);
                     return checkArrayForColorLine(color, lineArray);
                 case "leftCenter":
-                    lineArray = MakeArrayOfLine(color, newRow, newCol, 0, -1, led, leds);
+                    lineArray = MakeArrayOfLine(color, newRow, newCol, 0, -1, leds);
                     return checkArrayForColorLine(color, lineArray);
                 default:
                     MessageBox.Show("Error: unidentified direction.");

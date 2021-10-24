@@ -8,11 +8,11 @@ namespace PSP_Reversi_MM_Winforms.Logic
 {
     public class ColorTurningLogic
     {
-        public void colorTurner(char color,int newRow, int newCol, int rowModifier, int colModifier, LEDButton[,] leds, int howMany)
+        public void colorTurner(string color,int newRow, int newCol, int rowModifier, int colModifier, LEDButton[,] leds, int howMany)
         {
             do
             {
-                if (color == 'b')
+                if (color == "black")
                 {
                     ButtonConfigurator.configureButtonChanges("black", Resources.black_piece, leds[newRow, newCol]);
                 }
