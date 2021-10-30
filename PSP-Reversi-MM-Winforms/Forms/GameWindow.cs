@@ -1,5 +1,7 @@
-﻿using PSP_Reversi_MM_Winforms.Constants;
+﻿using Microsoft.Extensions.Logging;
+using PSP_Reversi_MM_Winforms.Constants;
 using PSP_Reversi_MM_Winforms.Logic;
+using PSP_Reversi_MM_Winforms.Logic.SystemLogic;
 using PSP_Reversi_MM_Winforms.Model;
 using PSP_Reversi_MM_Winforms.Properties;
 using System;
@@ -14,17 +16,28 @@ using System.Windows.Forms;
 
 namespace PSP_Reversi_MM_Winforms.Forms
 {
-    public partial class GameWindow : Form
+    public partial class GameWindow : Form, IGameWindow
     {
-        InitiateGameSys gameSystem = new InitiateGameSys();
+        private readonly ISystemInitializer _systemInitializer;
+        private readonly IInitiateGameSys _initiateGameSys;
+
         LEDButton[,] leds = new LEDButton[8, 8];
         int turn = 1;
-        public GameWindow()
+        public GameWindow(ISystemInitializer systemInitializer, IInitiateGameSys initiateGameSys)
         {
+            _systemInitializer = systemInitializer;
+            _initiateGameSys = initiateGameSys;
             InitializeComponent();
-            gameSystem.print_Table(leds);
-            gameSystem.Return_GroupBox(groupBox1, leds);
-           
+
+        }
+        public GameWindow Create()
+        {
+            return new GameWindow(_systemInitializer, _initiateGameSys);
+        }
+        private LEDButton[,] startGame()
+        {
+            _initiateGameSys.print_Table(leds);
+            return leds;
         }
         public void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -50,6 +63,11 @@ namespace PSP_Reversi_MM_Winforms.Forms
             {
                 label2.Text = "White";
             }
+        }
+
+        private void startBtn_Click(object sender, EventArgs e)
+        {
+            _systemInitializer.Return_GroupBox(groupBox1, startGame());
         }
     }
 }

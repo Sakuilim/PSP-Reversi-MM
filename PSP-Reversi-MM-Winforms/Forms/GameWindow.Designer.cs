@@ -32,6 +32,7 @@ namespace PSP_Reversi_MM_Winforms.Forms
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.startBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -63,11 +64,22 @@ namespace PSP_Reversi_MM_Winforms.Forms
             this.label2.Text = "label2";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
+            // startBtn
+            // 
+            this.startBtn.Location = new System.Drawing.Point(535, 13);
+            this.startBtn.Name = "startBtn";
+            this.startBtn.Size = new System.Drawing.Size(112, 34);
+            this.startBtn.TabIndex = 3;
+            this.startBtn.Text = "Start Game";
+            this.startBtn.UseVisualStyleBackColor = true;
+            this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
+            // 
             // GameWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1274, 981);
+            this.Controls.Add(this.startBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
@@ -84,5 +96,6 @@ namespace PSP_Reversi_MM_Winforms.Forms
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button startBtn;
     }
 }
