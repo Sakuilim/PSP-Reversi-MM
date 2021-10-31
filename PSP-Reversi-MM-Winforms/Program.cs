@@ -35,11 +35,8 @@ namespace PSP_Reversi_MM_Winforms
             var builder = new ConfigurationBuilder();
             BuildConfig(builder);
 
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(builder.Build())
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
-                .CreateLogger();
+            new LoggerConfiguration();
+
 
             Log.Logger.Information("Application Starting");
 
@@ -57,12 +54,10 @@ namespace PSP_Reversi_MM_Winforms
                     services.AddTransient<IColorLineChecker, ColorLineChecker>();
                     services.AddTransient<IArrayLineChecker, ArrayLineChecker>();
                     services.AddTransient<IResultChecker,ResultChecker>();
-
                     services.AddTransient<ITurnLogic, TurnLogic>();
                     services.AddScoped<WelcomeWindow>();
                     services.AddScoped<IGameWindow, GameWindow>();
                     services.AddTransient<IColorTurningLogic, ColorTurningLogic>();
-                    services.AddLogging();
                     using (ServiceProvider serviceProvider = services.BuildServiceProvider())
                     {
                         var welcomeWindow = serviceProvider.GetRequiredService<WelcomeWindow>();
