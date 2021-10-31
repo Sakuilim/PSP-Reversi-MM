@@ -19,20 +19,20 @@ namespace PSP_Reversi_MM_Winforms.Logic
     public class InitiateGameSys : IInitiateGameSys
     {
         private readonly ILogger _log;
-        private readonly IConfiguration _config;
-        private readonly IColorTurningLogic _colorTurningLogic;
         private readonly IPiecePlacer _piecePlacer;
         private readonly ILabelChangingLogic _labelChangingLogic;
         private readonly ITurns _turns;
+        private readonly ITurnLogic _turnLogic;
+        private string color;
 
-        public InitiateGameSys(ITurns turns,ILabelChangingLogic labelChangingLogic,IPiecePlacer piecePlacer, IColorTurningLogic colorTurningLogic, ILogger<InitiateGameSys> log, IConfiguration config)
+        public InitiateGameSys(ITurnLogic turnLogic, ITurns turns, ILabelChangingLogic labelChangingLogic, IPiecePlacer piecePlacer, ILogger<InitiateGameSys> log)
         {
+            _turnLogic = turnLogic;
             _turns = turns;
             _labelChangingLogic = labelChangingLogic;
             _piecePlacer = piecePlacer;
-            _colorTurningLogic = colorTurningLogic;
             _log = log;
-            _config = config;
+
         }
         public LEDButton[,] print_Table(LEDButton[,] leds)
         {
@@ -52,30 +52,26 @@ namespace PSP_Reversi_MM_Winforms.Logic
                     {
                         leds[y, x] = ButtonMaker.MakeLEDButton(leds[y, x], y, x);
                     }
+
                     leds[y, x].Click += (sender, EventArgs) => { BtnClick(sender, EventArgs, leds); };
                 }
             }
             return leds;
         }
-        public void BtnClick(object sender, EventArgs e, LEDButton[,] leds)
+        private void BtnClick(object sender, EventArgs e, LEDButton[,] leds)
         {
-            string color = _labelChangingLogic.getLabel(_turns.currentTurn);
-            if (_turns.currentTurn % 2 > 0)
-            {
-                _log.LogInformation("Its { color }", color);
-            }
-            else
-            {
-                _log.LogInformation("Its { color }", color);
-            }
+            
             LEDButton myButton = sender as LEDButton;
             string[] coord = myButton.Name.Split(':');
-            MessageBox.Show(myButton.Tag + " ");
             int y = Int32.Parse(coord[0]);
             int x = Int32.Parse(coord[1]);
+            color = _labelChangingLogic.getLabel(_turns.currentTurn);
             if (_piecePlacer.PlacePiece(color, y, x, leds))
             {
-                _turns.currentTurn++;
+                _log.LogInformation(" { color } made a move", color);
+                _turns.currentTurn = _turnLogic.TurnIncreaser(_turns.currentTurn);
+                color = _labelChangingLogic.getLabel(_turns.currentTurn);
+                GameWindow.label2.Text = color;
             }
         }
     }

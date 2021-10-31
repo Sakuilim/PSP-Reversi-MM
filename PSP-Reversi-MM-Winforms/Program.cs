@@ -1,10 +1,12 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PSP_Reversi_MM_Winforms.Constants;
 using PSP_Reversi_MM_Winforms.Forms;
 using PSP_Reversi_MM_Winforms.Logic;
 using PSP_Reversi_MM_Winforms.Logic.ColorCheckingLogic;
 using PSP_Reversi_MM_Winforms.Logic.DirectionLogic;
+using PSP_Reversi_MM_Winforms.Logic.EndGameLogic;
 using PSP_Reversi_MM_Winforms.Logic.PieceLogic;
 using PSP_Reversi_MM_Winforms.Logic.SystemLogic;
 using PSP_Reversi_MM_Winforms.Shared;
@@ -54,24 +56,21 @@ namespace PSP_Reversi_MM_Winforms
                     services.AddTransient<IDirectionChecker, DirectionChecker>();
                     services.AddTransient<IColorLineChecker, ColorLineChecker>();
                     services.AddTransient<IArrayLineChecker, ArrayLineChecker>();
+                    services.AddTransient<IResultChecker,ResultChecker>();
+
+                    services.AddTransient<ITurnLogic, TurnLogic>();
                     services.AddScoped<WelcomeWindow>();
-                    services.AddScoped<IGameWindow,GameWindow>();
+                    services.AddScoped<IGameWindow, GameWindow>();
                     services.AddTransient<IColorTurningLogic, ColorTurningLogic>();
                     services.AddLogging();
                     using (ServiceProvider serviceProvider = services.BuildServiceProvider())
                     {
                         var welcomeWindow = serviceProvider.GetRequiredService<WelcomeWindow>();
-                       // var gameWindow = serviceProvider.GetRequiredService<GameWindow>();
                         Application.Run(welcomeWindow);
-
                     }
                 })
                 .UseSerilog()
                 .Build();
-           
-            
-            
-           
         }
 
         static void BuildConfig(IConfigurationBuilder builder)

@@ -4,6 +4,7 @@ using PSP_Reversi_MM_Winforms.Logic;
 using PSP_Reversi_MM_Winforms.Logic.SystemLogic;
 using PSP_Reversi_MM_Winforms.Model;
 using PSP_Reversi_MM_Winforms.Properties;
+using PSP_Reversi_MM_Winforms.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,23 +21,26 @@ namespace PSP_Reversi_MM_Winforms.Forms
     {
         private readonly ISystemInitializer _systemInitializer;
         private readonly IInitiateGameSys _initiateGameSys;
-
+        private readonly ILabelChangingLogic _labelChangingLogic;
         LEDButton[,] leds = new LEDButton[8, 8];
-        int turn = 1;
-        public GameWindow(ISystemInitializer systemInitializer, IInitiateGameSys initiateGameSys)
+        public GameWindow(ILabelChangingLogic labelChangingLogic, ISystemInitializer systemInitializer, IInitiateGameSys initiateGameSys)
         {
             _systemInitializer = systemInitializer;
             _initiateGameSys = initiateGameSys;
+            _labelChangingLogic = labelChangingLogic;
             InitializeComponent();
+            
 
         }
         public GameWindow Create()
         {
-            return new GameWindow(_systemInitializer, _initiateGameSys);
+            return new GameWindow(_labelChangingLogic, _systemInitializer, _initiateGameSys);
+           
         }
         private LEDButton[,] startGame()
         {
             _initiateGameSys.print_Table(leds);
+            
             return leds;
         }
         public void groupBox1_Enter(object sender, EventArgs e)
@@ -55,19 +59,13 @@ namespace PSP_Reversi_MM_Winforms.Forms
         }
         private void label2_Click(object sender, EventArgs e)
         {
-            if (turn % 2 > 0)
-            {
-                label2.Text = "Black";
-            }
-            else
-            {
-                label2.Text = "White";
-            }
+            
         }
 
         private void startBtn_Click(object sender, EventArgs e)
         {
             _systemInitializer.Return_GroupBox(groupBox1, startGame());
+            label2.Text = "black";
         }
     }
 }

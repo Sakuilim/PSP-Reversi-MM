@@ -18,9 +18,13 @@ namespace PSP_Reversi_MM_Winforms.Shared
                 {
                     return "black";
                 }
-                else
+                else if(turn % 2 > 0)
                 {
                     return "white";
+                }
+                else
+                {
+                    return "error";
                 }
             }
 

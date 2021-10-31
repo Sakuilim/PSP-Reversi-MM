@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PSP_Reversi_MM_Winforms.Constants
 {
-    public class TurnLogic
+    public class TurnLogic : ITurnLogic
     {
         public int TurnIncreaser(int? currentTurn)
         {

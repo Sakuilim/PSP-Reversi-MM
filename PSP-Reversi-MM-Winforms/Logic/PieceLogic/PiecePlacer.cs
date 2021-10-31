@@ -1,4 +1,5 @@
-﻿using PSP_Reversi_MM_Winforms.Model;
+﻿using PSP_Reversi_MM_Winforms.Logic.EndGameLogic;
+using PSP_Reversi_MM_Winforms.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,12 +10,19 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
     public class PiecePlacer : IPiecePlacer
     {
         private readonly ILegalMoveChecker _legalMoveChecker;
-        public PiecePlacer(ILegalMoveChecker legalMoveChecker)
+        private readonly IResultChecker _resultChecker;
+        public PiecePlacer(ILegalMoveChecker legalMoveChecker, IResultChecker resultChecker)
         {
             _legalMoveChecker = legalMoveChecker;
+            _resultChecker = resultChecker;
         }
         public bool PlacePiece(string color, int row, int col, LEDButton[,] leds)
         {
+            //if(!_resultChecker.check_Winner(color,leds))
+            //{
+            //    MessageBox.Show("Error: ENDGAME");
+            //    return false;
+            //}
             if (_legalMoveChecker.IsLegalMove(color, col, row, leds))
             {
                 return true;
