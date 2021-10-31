@@ -21,12 +21,9 @@ namespace PSP_Reversi_MM_Winforms.Logic.EndGameLogic
             {
                 for (int x = 0; x < leds.GetUpperBound(1) + 1; x++)
                 {
-                    if ((string)leds[y, x].Tag == "green")
+                    if ((string)leds[y, x].Tag == "green" && !_legalMoveChecker.IsLegalMove(color, y, x, leds))
                     {
-                        if (!_legalMoveChecker.IsLegalMove(color, y, x, leds))
-                        {
-                            isValid = false;
-                        }
+                        isValid = false;
                     }
                 }
             }

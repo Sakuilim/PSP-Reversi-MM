@@ -35,12 +35,9 @@ namespace PSP_Reversi_MM_Winforms
             var builder = new ConfigurationBuilder();
             BuildConfig(builder);
 
-            new LoggerConfiguration();
-
-
             Log.Logger.Information("Application Starting");
 
-            var host = Host.CreateDefaultBuilder()
+            Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
                     services.AddTransient<IInitiateGameSys, InitiateGameSys>();

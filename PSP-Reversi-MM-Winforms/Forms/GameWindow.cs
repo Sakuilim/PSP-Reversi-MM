@@ -43,25 +43,6 @@ namespace PSP_Reversi_MM_Winforms.Forms
             
             return leds;
         }
-        public void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void GameWindow_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void label2_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void startBtn_Click(object sender, EventArgs e)
         {
             _systemInitializer.Return_GroupBox(groupBox1, startGame());

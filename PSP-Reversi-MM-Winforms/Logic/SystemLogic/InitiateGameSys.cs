@@ -23,7 +23,6 @@ namespace PSP_Reversi_MM_Winforms.Logic
         private readonly ILabelChangingLogic _labelChangingLogic;
         private readonly ITurns _turns;
         private readonly ITurnLogic _turnLogic;
-        private string color;
 
         public InitiateGameSys(ITurnLogic turnLogic, ITurns turns, ILabelChangingLogic labelChangingLogic, IPiecePlacer piecePlacer, ILogger<InitiateGameSys> log)
         {
@@ -36,37 +35,37 @@ namespace PSP_Reversi_MM_Winforms.Logic
         }
         public LEDButton[,] print_Table(LEDButton[,] leds)
         {
-            for (int y = 0; y < leds.GetUpperBound(0) + 1; y++)
+            for (int x = 0; x < leds.GetUpperBound(0) + 1; x++)
             {
-                for (int x = 0; x < leds.GetUpperBound(1) + 1; x++)
+                for (int y = 0; y < leds.GetUpperBound(1) + 1; y++)
                 {
                     if (x == 3 && y == 3 || x == 4 && y == 4)
                     {
-                        leds[y, x] = ButtonMaker.MakeWhiteLEDButton(leds[y, x], y, x);
+                        leds[x, y] = ButtonMaker.MakeWhiteLEDButton(leds[x, y], x, y);
                     }
                     else if (x == 3 && y == 4 || x == 4 && y == 3)
                     {
-                        leds[y, x] = ButtonMaker.MakeBlackLEDButton(leds[y, x], y, x);
+                        leds[x, y] = ButtonMaker.MakeBlackLEDButton(leds[x, y], x, y);
                     }
                     else
                     {
-                        leds[y, x] = ButtonMaker.MakeLEDButton(leds[y, x], y, x);
+                        leds[x, y] = ButtonMaker.MakeLEDButton(leds[x, y], x, y);
                     }
 
-                    leds[y, x].Click += (sender, EventArgs) => { BtnClick(sender, EventArgs, leds); };
+                    leds[x, y].Click += (sender, EventArgs) => { BtnClick(sender,  leds); };
                 }
             }
             return leds;
         }
-        private void BtnClick(object sender, EventArgs e, LEDButton[,] leds)
+        private void BtnClick(object sender, LEDButton[,] leds)
         {
             
             LEDButton myButton = sender as LEDButton;
             string[] coord = myButton.Name.Split(':');
             int y = Int32.Parse(coord[0]);
             int x = Int32.Parse(coord[1]);
-            color = _labelChangingLogic.getLabel(_turns.currentTurn);
-            if (_piecePlacer.PlacePiece(color, y, x, leds))
+            string color = _labelChangingLogic.getLabel(_turns.currentTurn);
+            if (_piecePlacer.PlacePiece(color, x, y, leds))
             {
                 _log.LogInformation(" { color } made a move", color);
                 _turns.currentTurn = _turnLogic.TurnIncreaser(_turns.currentTurn);

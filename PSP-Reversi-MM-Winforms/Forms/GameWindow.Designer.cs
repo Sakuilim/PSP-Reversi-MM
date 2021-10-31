@@ -45,7 +45,6 @@ namespace PSP_Reversi_MM_Winforms.Forms
             this.groupBox1.Size = new System.Drawing.Size(953, 864);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox2
             // 
@@ -64,7 +63,6 @@ namespace PSP_Reversi_MM_Winforms.Forms
             this.label1.Size = new System.Drawing.Size(51, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Turn:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -76,7 +74,6 @@ namespace PSP_Reversi_MM_Winforms.Forms
             label2.Size = new System.Drawing.Size(12, 25);
             label2.TabIndex = 2;
             label2.Text = "\r\n";
-            label2.Click += new System.EventHandler(label2_Click);
             // 
             // startBtn
             // 
@@ -99,7 +96,6 @@ namespace PSP_Reversi_MM_Winforms.Forms
             this.Controls.Add(this.groupBox1);
             this.Name = "GameWindow";
             this.Text = "GameWindow";
-            this.Load += new System.EventHandler(this.GameWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

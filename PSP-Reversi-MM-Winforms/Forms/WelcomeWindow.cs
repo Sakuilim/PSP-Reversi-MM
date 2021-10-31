@@ -14,12 +14,10 @@ namespace PSP_Reversi_MM_Winforms.Forms
 {
     public partial class WelcomeWindow : Form
     {
-        private readonly ILogger _log;
         private readonly IGameWindow _gameWindow;
-        public WelcomeWindow(IGameWindow gameWindow,ILogger<WelcomeWindow> log)
+        public WelcomeWindow(IGameWindow gameWindow)
         {
-            _gameWindow = gameWindow;
-            _log = log; 
+            _gameWindow = gameWindow; 
             InitializeComponent();
         }
 
@@ -37,7 +35,7 @@ namespace PSP_Reversi_MM_Winforms.Forms
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            throw new NotSupportedException();
         }
 
     }

@@ -16,7 +16,7 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
             _legalMoveChecker = legalMoveChecker;
             _resultChecker = resultChecker;
         }
-        public bool PlacePiece(string color, int row, int col, LEDButton[,] leds)
+        public bool PlacePiece(string color, int col, int row, LEDButton[,] leds)
         {
             //if(!_resultChecker.check_Winner(color,leds))
             //{
