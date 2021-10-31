@@ -6,9 +6,9 @@ using System.Text;
 
 namespace PSP_Reversi_MM_Winforms.Logic
 {
-    public class ColorTurningLogic
+    public class ColorTurningLogic : IColorTurningLogic
     {
-        public void colorTurner(string color,int newRow, int newCol, int rowModifier, int colModifier, LEDButton[,] leds, int howMany)
+        public void colorTurner(string color, int newRow, int newCol, int rowModifier, int colModifier, LEDButton[,] leds, int howMany)
         {
             do
             {

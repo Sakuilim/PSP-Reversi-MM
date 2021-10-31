@@ -1,4 +1,5 @@
-﻿using PSP_Reversi_MM_Winforms.Logic;
+﻿using Microsoft.Extensions.Logging;
+using PSP_Reversi_MM_Winforms.Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,8 +14,10 @@ namespace PSP_Reversi_MM_Winforms.Forms
 {
     public partial class WelcomeWindow : Form
     {
-        public WelcomeWindow()
+        private readonly IGameWindow _gameWindow;
+        public WelcomeWindow(IGameWindow gameWindow)
         {
+            _gameWindow = gameWindow; 
             InitializeComponent();
         }
 
@@ -27,12 +30,12 @@ namespace PSP_Reversi_MM_Winforms.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GameWindow gameWindow = new GameWindow();
-            gameWindow.Show();
+            GameWindow newGameWindow = _gameWindow.Create();
+            newGameWindow.Show();
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            throw new NotSupportedException();
         }
 
     }
