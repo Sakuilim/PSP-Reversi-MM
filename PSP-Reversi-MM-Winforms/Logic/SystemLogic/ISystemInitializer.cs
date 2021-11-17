@@ -5,6 +5,6 @@ namespace PSP_Reversi_MM_Winforms.Logic.SystemLogic
 {
     public interface ISystemInitializer
     {
-        GroupBox Return_GroupBox(GroupBox controls, LEDButton[,] leds);
+        void Return_GroupBox(GroupBox controls, LEDButton[,] leds);
     }
 }

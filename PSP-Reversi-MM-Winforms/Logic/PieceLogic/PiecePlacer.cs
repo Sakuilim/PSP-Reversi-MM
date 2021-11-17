@@ -16,21 +16,20 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
             _legalMoveChecker = legalMoveChecker;
             _resultChecker = resultChecker;
         }
-        public bool PlacePiece(string color, int col, int row, LEDButton[,] leds)
+        public string PlacePiece(string color, int col, int row, LEDButton[,] leds)
         {
-            //if(!_resultChecker.check_Winner(color,leds))
-            //{
-            //    MessageBox.Show("Error: ENDGAME");
-            //    return false;
-            //}
-            if (_legalMoveChecker.IsLegalMove(color, col, row, leds))
+            if(!_legalMoveChecker.IsLegalMove(true, color, col, row, leds))
             {
-                return true;
+                return "illegal";
+            }
+            if (_resultChecker.check_Winner(color, leds))
+            {
+                MessageBox.Show("Error: ENDGAME");
+                return "end";
             }
             else
             {
-                MessageBox.Show("Error: This is an illegal move.  Please pick a new location.");
-                return false;
+                return "legal";
             }
         }
     }

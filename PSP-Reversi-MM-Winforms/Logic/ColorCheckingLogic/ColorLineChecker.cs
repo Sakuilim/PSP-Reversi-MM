@@ -20,19 +20,13 @@ namespace PSP_Reversi_MM_Winforms.Logic.ColorCheckingLogic
                     {
                         return numOpposingColor;
                     }
-                    else
-                    {
-                        return 0;
-                    }
+                    return 0;
                 }
                 else if ((string)array[i].Tag == "green")
                 {
                     return 0;
                 }
-                else
-                {
-                    numOpposingColor++;
-                }
+                numOpposingColor++;
             }
             return 0;
         }

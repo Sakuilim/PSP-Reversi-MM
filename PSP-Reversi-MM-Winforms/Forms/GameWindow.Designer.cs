@@ -73,7 +73,7 @@ namespace PSP_Reversi_MM_Winforms.Forms
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(12, 25);
             label2.TabIndex = 2;
-            label2.Text = "\r\n";
+            label2.Text = "black";
             // 
             // startBtn
             // 

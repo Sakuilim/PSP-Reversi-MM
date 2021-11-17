@@ -5,6 +5,6 @@ namespace PSP_Reversi_MM_Winforms.Logic
 {
     public interface IInitiateGameSys
     {
-        LEDButton[,] print_Table(LEDButton[,] leds);
+        void print_Table(LEDButton[,] leds);
     }
 }

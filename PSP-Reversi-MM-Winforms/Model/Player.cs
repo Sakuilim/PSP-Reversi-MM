@@ -4,19 +4,10 @@ using System.Text;
 
 namespace PSP_Reversi_MM_Winforms.Model
 {
-    public class Player
+    public static class Player
     {
-        private string nameOfPlayer;
-        private string color;
+        public static int blackAmountOfPieces { get; set; } = 0;
 
-        public Player(string nameOfPlayer, string color)
-        {
-            this.nameOfPlayer = nameOfPlayer;
-            this.color = color;
-        }
-        
-        public int amountOfPieces { get; set; }
-        public int Sign { get; set; } = 0;
-        
+        public static int whiteAmountOfPieces { get; set; } = 0;
     }
 }

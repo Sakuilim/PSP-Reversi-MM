@@ -4,6 +4,6 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
 {
     public interface IPiecePlacer
     {
-        bool PlacePiece(string color, int row, int col, LEDButton[,] leds);
+        string PlacePiece(string color, int row, int col, LEDButton[,] leds);
     }
 }

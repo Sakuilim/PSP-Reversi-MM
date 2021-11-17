@@ -27,7 +27,6 @@ namespace PSP_Reversi_MM_Winforms.Forms
             settingsWindow.Show();
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             GameWindow newGameWindow = _gameWindow.Create();
