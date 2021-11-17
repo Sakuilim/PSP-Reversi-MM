@@ -29,24 +29,19 @@ namespace PSP_Reversi_MM_Winforms.Forms
             _initiateGameSys = initiateGameSys;
             _labelChangingLogic = labelChangingLogic;
             InitializeComponent();
-            
-
         }
         public GameWindow Create()
         {
             return new GameWindow(_labelChangingLogic, _systemInitializer, _initiateGameSys);
-           
         }
         private LEDButton[,] startGame()
         {
             _initiateGameSys.print_Table(leds);
-            
             return leds;
         }
         private void startBtn_Click(object sender, EventArgs e)
         {
             _systemInitializer.Return_GroupBox(groupBox1, startGame());
-            label2.Text = "black";
         }
     }
 }

@@ -50,6 +50,7 @@ namespace PSP_Reversi_MM_Winforms
                     services.AddTransient<IDirectionChecker, DirectionChecker>();
                     services.AddTransient<IColorLineChecker, ColorLineChecker>();
                     services.AddTransient<IArrayLineChecker, ArrayLineChecker>();
+                    services.AddTransient<IPointLogic, PointLogic>();
                     services.AddTransient<IResultChecker,ResultChecker>();
                     services.AddTransient<ITurnLogic, TurnLogic>();
                     services.AddScoped<WelcomeWindow>();

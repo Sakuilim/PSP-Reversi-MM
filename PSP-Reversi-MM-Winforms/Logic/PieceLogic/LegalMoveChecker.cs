@@ -16,7 +16,7 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
             _directionChecker = directionChecker;
             _colorTurningLogic = colorTurningLogic;
         }
-        public bool IsLegalMove(string color, int row, int col, LEDButton[,] leds)
+        public bool IsLegalMove(bool turner, string color, int row, int col, LEDButton[,] leds)
         {
             int tmp = 0;
             if ((string)leds[row, col].Tag != "green" && (string)leds[row, col].Tag == color)
@@ -34,42 +34,66 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
                     tmp = _directionChecker.checkDirection(color, row, col, directions[i], leds);
                     if (directions[i] == "topLeft")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, -1, -1, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, -1, -1, leds, tmp);
+                        }
                         success = true;
                     }
                     else if (directions[i] == "topCenter")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, -1, 0, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, -1, 0, leds, tmp);
+                        }
                         success = true;
                     }
                     else if (directions[i] == "topRight")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, -1, 1, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, -1, 1, leds, tmp);
+                        }
                         success = true;
                     }
                     else if (directions[i] == "rightCenter")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, 0, 1, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, 0, 1, leds, tmp);
+                        }
                         success = true;
                     }
                     else if (directions[i] == "bottomRight")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, 1, 1, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, 1, 1, leds, tmp);
+                        }
                         success = true;
                     }
                     else if (directions[i] == "bottomCenter")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, 1, 0, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, 1, 0, leds, tmp);
+                        }
                         success = true;
                     }
                     else if (directions[i] == "bottomLeft")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, 1, -1, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, 1, -1, leds, tmp);
+                        }
                         success = true;
                     }
                     else if (directions[i] == "leftCenter")
                     {
-                        _colorTurningLogic.colorTurner(color, row, col, 0, -1, leds, tmp);
+                        if (turner == true)
+                        {
+                            _colorTurningLogic.colorTurner(color, row, col, 0, -1, leds, tmp);
+                        }
                         success = true;
                     }
 

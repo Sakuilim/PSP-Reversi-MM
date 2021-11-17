@@ -2,27 +2,40 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace PSP_Reversi_MM_Winforms.Constants
 {
-    public class PointLogic
+    public class PointLogic : IPointLogic
     {
-        public string PointChecker( Player player, Player player1)
+        public void PointChecker(LEDButton[,] Leds)
         {
-            if (player.amountOfPieces > player1.amountOfPieces)
+            for (int x = 0; x < Leds.GetUpperBound(0) + 1; x++)
             {
-                return "Winner is Player 1!";
+                for (int y = 0; y < Leds.GetUpperBound(1) + 1; y++)
+                {
+                    if ((string)Leds[x, y].Tag == "black")
+                    {
+                        Player.blackAmountOfPieces++;
+                    }
+                    else
+                    {
+                        Player.whiteAmountOfPieces++;
+                    }
+                }
             }
-            else if (player.amountOfPieces < player1.amountOfPieces)
+            if (Player.blackAmountOfPieces > Player.whiteAmountOfPieces)
             {
-                return "Winner is Player 2!";
+                MessageBox.Show($"Winner is Black! with {Player.blackAmountOfPieces} pieces");
             }
-            else if (player.amountOfPieces == player1.amountOfPieces)
+            else if (Player.blackAmountOfPieces < Player.whiteAmountOfPieces)
             {
-                return "It's a Draw!";
+                MessageBox.Show($"Winner is White! with {Player.whiteAmountOfPieces} pieces");
             }
-
-            return "Game Continues";
+            else if (Player.blackAmountOfPieces == Player.whiteAmountOfPieces)
+            {
+                MessageBox.Show($"It's a Draw! with both teams having {Player.whiteAmountOfPieces} pieces");
+            }
         }
     }
 }
