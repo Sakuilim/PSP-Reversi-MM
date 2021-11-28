@@ -15,11 +15,11 @@ namespace PSP_Reversi_MM_Winforms.Logic
             {
                 if (color == "black")
                 {
-                    ButtonConfigurator.configureButtonChanges("black", Resources.black_piece, buttonTable.leds[newRow, newCol]);
+                    ButtonConfigurator.configureButtonChanges("black", Resources.black_piece, buttonTable.Leds[newRow, newCol]);
                 }
                 else
                 {
-                    ButtonConfigurator.configureButtonChanges("white", Resources.white_piece, buttonTable.leds[newRow, newCol]);
+                    ButtonConfigurator.configureButtonChanges("white", Resources.white_piece, buttonTable.Leds[newRow, newCol]);
                 }
                 newRow += rowModifier;
                 newCol += colModifier;

@@ -18,13 +18,13 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
             {
                 return array;
             }
-            else if ((string)buttonTable.leds[newRow, newCol].Tag == "green")
+            else if ((string)buttonTable.Leds[newRow, newCol].Tag == "green")
             {
                 return array;
             }
             else
             {
-                array.Add(buttonTable.leds[newRow, newCol]);
+                array.Add(buttonTable.Leds[newRow, newCol]);
                 do
                 {
 
@@ -34,7 +34,7 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
                     {
                         return array;
                     }
-                    array.Add(buttonTable.leds[newRow, newCol]);
+                    array.Add(buttonTable.Leds[newRow, newCol]);
 
                 } while (newRow > 0 && newCol > 0 && newRow < 8 - 1 && newCol < 8 - 1);
                 return array;

@@ -18,11 +18,11 @@ namespace PSP_Reversi_MM_Winforms.Logic.EndGameLogic
         {
             bool isValid = true;
 
-            for (int y = 0; y < buttonTable.leds.GetUpperBound(0) + 1; y++)
+            for (int y = 0; y < buttonTable.Leds.GetUpperBound(0) + 1; y++)
             {
-                for (int x = 0; x < buttonTable.leds.GetUpperBound(1) + 1; x++)
+                for (int x = 0; x < buttonTable.Leds.GetUpperBound(1) + 1; x++)
                 {
-                    if ((string)buttonTable.leds[y, x].Tag == "green" && !_legalMoveChecker.IsLegalMove(false, color, y, x, buttonTable))
+                    if ((string)buttonTable.Leds[y, x].Tag == "green" && !_legalMoveChecker.IsLegalMove(false, color, y, x, buttonTable))
                     {
                         isValid = false;
                     }

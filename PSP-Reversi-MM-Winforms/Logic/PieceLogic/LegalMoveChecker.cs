@@ -20,12 +20,12 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
         public bool IsLegalMove(bool turner, string color, int row, int col, ButtonTable buttonTable)
         {
             int tmp = 0;
-            if ((string)buttonTable.leds[row, col].Tag != "green" && (string)buttonTable.leds[row, col].Tag != color)
+            if ((string)buttonTable.Leds[row, col].Tag != "green" && (string)buttonTable.Leds[row, col].Tag != color)
             {
                 MessageBox.Show("Error, this position is already occupied by the other player.");
                 return false;
             }
-            else if ((string)buttonTable.leds[row, col].Tag == color)
+            else if ((string)buttonTable.Leds[row, col].Tag == color)
             {
                 MessageBox.Show("Error, this position is already occupied by you!");
                 return false;
