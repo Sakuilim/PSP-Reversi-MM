@@ -1,5 +1,6 @@
 ﻿using PSP_Reversi_MM_Winforms.Model;
 using PSP_Reversi_MM_Winforms.Properties;
+using PSP_Reversi_MM_Winforms.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,17 +9,17 @@ namespace PSP_Reversi_MM_Winforms.Logic
 {
     public class ColorTurningLogic : IColorTurningLogic
     {
-        public void colorTurner(string color, int newRow, int newCol, int rowModifier, int colModifier, LEDButton[,] leds, int howMany)
+        public void colorTurner(string color, int newRow, int newCol, int rowModifier, int colModifier, ButtonTable buttonTable, int howMany)
         {
             do
             {
                 if (color == "black")
                 {
-                    ButtonConfigurator.configureButtonChanges("black", Resources.black_piece, leds[newRow, newCol]);
+                    ButtonConfigurator.configureButtonChanges("black", Resources.black_piece, buttonTable.leds[newRow, newCol]);
                 }
                 else
                 {
-                    ButtonConfigurator.configureButtonChanges("white", Resources.white_piece, leds[newRow, newCol]);
+                    ButtonConfigurator.configureButtonChanges("white", Resources.white_piece, buttonTable.leds[newRow, newCol]);
                 }
                 newRow += rowModifier;
                 newCol += colModifier;

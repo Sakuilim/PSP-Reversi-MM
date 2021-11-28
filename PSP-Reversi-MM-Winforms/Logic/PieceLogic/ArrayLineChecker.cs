@@ -1,4 +1,5 @@
 ﻿using PSP_Reversi_MM_Winforms.Model;
+using PSP_Reversi_MM_Winforms.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
 {
     public class ArrayLineChecker : IArrayLineChecker
     {
-        public List<LEDButton> makeArrayOfLine(string color, int newRow, int newCol, int rowModifier, int colModifier, LEDButton[,] leds)
+        public List<LEDButton> makeArrayOfLine(string color, int newRow, int newCol, int rowModifier, int colModifier, ButtonTable buttonTable)
         {
             List<LEDButton> array = new List<LEDButton>();
 
@@ -17,13 +18,13 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
             {
                 return array;
             }
-            else if ((string)leds[newRow, newCol].Tag == "green")
+            else if ((string)buttonTable.leds[newRow, newCol].Tag == "green")
             {
                 return array;
             }
             else
             {
-                array.Add(leds[newRow, newCol]);
+                array.Add(buttonTable.leds[newRow, newCol]);
                 do
                 {
 
@@ -33,7 +34,7 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
                     {
                         return array;
                     }
-                    array.Add(leds[newRow, newCol]);
+                    array.Add(buttonTable.leds[newRow, newCol]);
 
                 } while (newRow > 0 && newCol > 0 && newRow < 8 - 1 && newCol < 8 - 1);
                 return array;
