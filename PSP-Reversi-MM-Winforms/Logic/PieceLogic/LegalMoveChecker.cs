@@ -1,5 +1,6 @@
 ﻿using PSP_Reversi_MM_Winforms.Logic.DirectionLogic;
 using PSP_Reversi_MM_Winforms.Model;
+using PSP_Reversi_MM_Winforms.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,83 +17,88 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
             _directionChecker = directionChecker;
             _colorTurningLogic = colorTurningLogic;
         }
-        public bool IsLegalMove(bool turner, string color, int row, int col, LEDButton[,] leds)
+        public bool IsLegalMove(bool turner, string color, int row, int col, ButtonTable buttonTable)
         {
             int tmp = 0;
-            if ((string)leds[row, col].Tag != "green" && (string)leds[row, col].Tag == color)
+            if ((string)buttonTable.leds[row, col].Tag != "green" && (string)buttonTable.leds[row, col].Tag != color)
             {
                 MessageBox.Show("Error, this position is already occupied by the other player.");
+                return false;
+            }
+            else if ((string)buttonTable.leds[row, col].Tag == color)
+            {
+                MessageBox.Show("Error, this position is already occupied by you!");
                 return false;
             }
 
             string[] directions = { "topLeft", "topCenter", "topRight", "rightCenter", "bottomRight", "bottomCenter", "bottomLeft", "leftCenter" };
             bool success = false;
-            for (int i = 0; i < 8; i++)
+            foreach (var direction in directions)
             {
-                if (_directionChecker.checkDirection(color, row, col, directions[i], leds) > 0)
+                if (_directionChecker.checkDirection(color, row, col, direction, buttonTable) > 0)
                 {
-                    tmp = _directionChecker.checkDirection(color, row, col, directions[i], leds);
-                    if (directions[i] == "topLeft")
+                    tmp = _directionChecker.checkDirection(color, row, col, direction, buttonTable);
+                    if (direction == "topLeft")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, -1, -1, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.leftModifier, buttonTable, tmp);
                         }
                         success = true;
                     }
-                    else if (directions[i] == "topCenter")
+                    else if (direction == "topCenter")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, -1, 0, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.emptyModifier, buttonTable, tmp);
                         }
                         success = true;
                     }
-                    else if (directions[i] == "topRight")
+                    else if (direction == "topRight")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, -1, 1, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.rightModifier, buttonTable, tmp);
                         }
                         success = true;
                     }
-                    else if (directions[i] == "rightCenter")
+                    else if (direction == "rightCenter")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, 0, 1, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.rightModifier, buttonTable, tmp);
                         }
                         success = true;
                     }
-                    else if (directions[i] == "bottomRight")
+                    else if (direction == "bottomRight")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, 1, 1, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.rightModifier, buttonTable, tmp);
                         }
                         success = true;
                     }
-                    else if (directions[i] == "bottomCenter")
+                    else if (direction == "bottomCenter")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, 1, 0, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.emptyModifier, buttonTable, tmp);
                         }
                         success = true;
                     }
-                    else if (directions[i] == "bottomLeft")
+                    else if (direction == "bottomLeft")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, 1, -1, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.leftModifier, buttonTable, tmp);
                         }
                         success = true;
                     }
-                    else if (directions[i] == "leftCenter")
+                    else if (direction == "leftCenter")
                     {
-                        if (turner == true)
+                        if (turner)
                         {
-                            _colorTurningLogic.colorTurner(color, row, col, 0, -1, leds, tmp);
+                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.leftModifier, buttonTable, tmp);
                         }
                         success = true;
                     }

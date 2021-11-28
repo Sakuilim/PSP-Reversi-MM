@@ -35,29 +35,29 @@ namespace PSP_Reversi_MM_Winforms.Logic
             _log = log;
 
         }
-        public void print_Table(LEDButton[,] leds)
+        public void print_Table(ButtonTable buttonTable)
         {
-            for (int x = 0; x < leds.GetUpperBound(0) + 1; x++)
+            for (int x = 0; x < buttonTable.leds.GetUpperBound(0) + 1; x++)
             {
-                for (int y = 0; y < leds.GetUpperBound(1) + 1; y++)
+                for (int y = 0; y < buttonTable.leds.GetUpperBound(1) + 1; y++)
                 {
                     if (x == 3 && y == 3 || x == 4 && y == 4)
                     {
-                        leds[x, y] = ButtonMaker.MakeWhiteLEDButton(leds[x, y], x, y);
+                        buttonTable.leds[x, y] = ButtonMaker.MakeWhiteLEDButton(buttonTable.leds[x, y], x, y);
                     }
                     else if (x == 3 && y == 4 || x == 4 && y == 3)
                     {
-                        leds[x, y] = ButtonMaker.MakeBlackLEDButton(leds[x, y], x, y);
+                        buttonTable.leds[x, y] = ButtonMaker.MakeBlackLEDButton(buttonTable.leds[x, y], x, y);
                     }
                     else
                     {
-                        leds[x, y] = ButtonMaker.MakeLEDButton(leds[x, y], x, y);
+                        buttonTable.leds[x, y] = ButtonMaker.MakeLEDButton(buttonTable.leds[x, y], x, y);
                     }
-                    leds[x, y].Click += (sender, EventArgs) =>
+                    buttonTable.leds[x, y].Click += (sender, EventArgs) =>
                     {
-                        if (BtnClick(sender, leds) == false)
+                        if (BtnClick(sender, buttonTable) == false)
                         {
-                            _pointLogic.PointChecker(leds);
+                            _pointLogic.PointChecker(buttonTable.leds);
                             GameWindow obj = (GameWindow)Application.OpenForms["GameWindow"];
                             obj.Close();
                         };
@@ -65,14 +65,14 @@ namespace PSP_Reversi_MM_Winforms.Logic
                 }
             }
         }
-        private bool BtnClick(object sender, LEDButton[,] leds)
+        private bool BtnClick(object sender, ButtonTable buttonTable)
         {
             LEDButton myButton = sender as LEDButton;
             string[] coord = myButton.Name.Split(':');
             int y = Int32.Parse(coord[0]);
             int x = Int32.Parse(coord[1]);
             string color = _labelChangingLogic.getLabel(_turns.currentTurn);
-            string placePiece = _piecePlacer.PlacePiece(color, x, y, leds);
+            string placePiece = _piecePlacer.PlacePiece(color, x, y, buttonTable);
             if (placePiece == "legal")
             {
                 _log.LogInformation(" { color } made a move", color);
