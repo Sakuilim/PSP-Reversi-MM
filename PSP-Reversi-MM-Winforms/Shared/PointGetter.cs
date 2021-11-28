@@ -1,4 +1,5 @@
 ﻿using PSP_Reversi_MM_Winforms.Model;
+using PSP_Reversi_MM_Winforms.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,13 +9,13 @@ namespace PSP_Reversi_MM_Winforms.Constants
 {
     public class PointLogic : IPointLogic
     {
-        public void PointChecker(LEDButton[,] Leds)
+        public void PointChecker(ButtonTable buttonTable)
         {
-            for (int x = 0; x < Leds.GetUpperBound(0) + 1; x++)
+            for (int x = 0; x < buttonTable.Leds.GetUpperBound(0) + 1; x++)
             {
-                for (int y = 0; y < Leds.GetUpperBound(1) + 1; y++)
+                for (int y = 0; y < buttonTable.Leds.GetUpperBound(1) + 1; y++)
                 {
-                    if ((string)Leds[x, y].Tag == "black")
+                    if ((string)buttonTable.Leds[x, y].Tag == "black")
                     {
                         Player.blackAmountOfPieces++;
                     }

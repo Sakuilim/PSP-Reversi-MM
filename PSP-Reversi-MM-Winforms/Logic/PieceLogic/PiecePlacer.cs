@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
 {
-    public class PiecePlacer : IPiecePlacer
+    public class PiecePlacer : IPiecePlacer 
     {
         private readonly ILegalMoveChecker _legalMoveChecker;
         private readonly IResultChecker _resultChecker;
@@ -17,9 +17,9 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
             _legalMoveChecker = legalMoveChecker;
             _resultChecker = resultChecker;
         }
-        public string PlacePiece(string color, int col, int row, ButtonTable buttonTable)
+        public string PlacePiece(string color, int row, int col, ButtonTable buttonTable)
         {
-            if(!_legalMoveChecker.IsLegalMove(true, color, col, row, buttonTable))
+            if(!_legalMoveChecker.IsLegalMove(true, color, row, col, buttonTable))
             {
                 return "illegal";
             }

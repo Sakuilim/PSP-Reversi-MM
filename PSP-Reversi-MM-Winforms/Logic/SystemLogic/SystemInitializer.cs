@@ -11,9 +11,9 @@ namespace PSP_Reversi_MM_Winforms.Logic.SystemLogic
     {
         public void Return_GroupBox(GroupBox controls, ButtonTable buttonTable)
         {
-            for (int x = 0; x < buttonTable.leds.GetUpperBound(0) + 1; x++)
-                for (int y = 0; y < buttonTable.leds.GetUpperBound(1) + 1; y++)
-                    controls.Controls.Add(buttonTable.leds[x, y]);
+            for (int x = 0; x < buttonTable.Leds.GetUpperBound(0) + 1; x++)
+                for (int y = 0; y < buttonTable.Leds.GetUpperBound(1) + 1; y++)
+                    controls.Controls.Add(buttonTable.Leds[x, y]);
         }
     }
 }
