@@ -50,17 +50,16 @@ namespace PSP_Reversi_MM_Winforms
                     services.AddTransient<IDirectionChecker, DirectionChecker>();
                     services.AddTransient<IColorLineChecker, ColorLineChecker>();
                     services.AddTransient<IArrayLineChecker, ArrayLineChecker>();
+                    services.AddTransient<IColorTurningInitiator, ColorTurningInitiator>();
                     services.AddTransient<IPointLogic, PointLogic>();
                     services.AddTransient<IResultChecker,ResultChecker>();
                     services.AddTransient<ITurnLogic, TurnLogic>();
                     services.AddScoped<WelcomeWindow>();
                     services.AddScoped<IGameWindow, GameWindow>();
                     services.AddTransient<IColorTurningLogic, ColorTurningLogic>();
-                    using (ServiceProvider serviceProvider = services.BuildServiceProvider())
-                    {
-                        var welcomeWindow = serviceProvider.GetRequiredService<WelcomeWindow>();
-                        Application.Run(welcomeWindow);
-                    }
+                    using ServiceProvider serviceProvider = services.BuildServiceProvider();
+                    var welcomeWindow = serviceProvider.GetRequiredService<WelcomeWindow>();
+                    Application.Run(welcomeWindow);
                 })
                 .UseSerilog()
                 .Build();
