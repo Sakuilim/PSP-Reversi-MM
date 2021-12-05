@@ -7,12 +7,6 @@ namespace PSP_Reversi_MM_Winforms.Shared.Model
 {
     public class ButtonTable
     {
-        private LEDButton[,] leds = new LEDButton[8, 8];
-
-        public LEDButton[,] Leds
-        {
-            get { return leds; }
-            set { leds = value; }
-        }
+        public LEDButton[,] Leds { get; set; } = new LEDButton[8, 8];
     }
 }

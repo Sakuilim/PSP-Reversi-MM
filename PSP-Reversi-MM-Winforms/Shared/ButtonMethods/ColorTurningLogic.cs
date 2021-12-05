@@ -31,7 +31,6 @@ namespace PSP_Reversi_MM_Winforms.Logic
 
                 } while (howMany >= 0);
             }
-         
         }
     }
 }
