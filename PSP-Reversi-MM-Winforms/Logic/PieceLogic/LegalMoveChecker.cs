@@ -10,102 +10,22 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
 {
     public class LegalMoveChecker : ILegalMoveChecker
     {
-        private readonly IColorTurningLogic _colorTurningLogic;
-        private readonly IDirectionChecker _directionChecker;
-        public LegalMoveChecker(IDirectionChecker directionChecker, IColorTurningLogic colorTurningLogic)
+        private readonly IColorTurningInitiator _colorTurningInitiator;
+
+        public LegalMoveChecker(IColorTurningInitiator colorTurningInitiator)
         {
-            _directionChecker = directionChecker;
-            _colorTurningLogic = colorTurningLogic;
+            _colorTurningInitiator = colorTurningInitiator;
         }
         public bool IsLegalMove(bool turner, string color, int row, int col, ButtonTable buttonTable)
         {
-            int tmp = 0;
-            if ((string)buttonTable.Leds[row, col].Tag != "green" && (string)buttonTable.Leds[row, col].Tag != color)
+            if ((string)buttonTable.Leds[row, col].Tag != "green")
             {
-                MessageBox.Show("Error, this position is already occupied by the other player.");
-                return false;
-            }
-            else if ((string)buttonTable.Leds[row, col].Tag == color)
-            {
-                MessageBox.Show("Error, this position is already occupied by you!");
+                MessageBox.Show("Error, this position is already occupied.");
                 return false;
             }
 
-            string[] directions = { "topLeft", "topCenter", "topRight", "rightCenter", "bottomRight", "bottomCenter", "bottomLeft", "leftCenter" };
-            bool success = false;
-            foreach (var direction in directions)
-            {
-                if (_directionChecker.checkDirection(color, row, col, direction, buttonTable) > 0)
-                {
-                    tmp = _directionChecker.checkDirection(color, row, col, direction, buttonTable);
-                    if (direction == "topLeft")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.leftModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-                    else if (direction == "topCenter")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.emptyModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-                    else if (direction == "topRight")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.rightModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-                    else if (direction == "rightCenter")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.rightModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-                    else if (direction == "bottomRight")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.rightModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-                    else if (direction == "bottomCenter")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.emptyModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-                    else if (direction == "bottomLeft")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.leftModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-                    else if (direction == "leftCenter")
-                    {
-                        if (turner)
-                        {
-                            _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.leftModifier, buttonTable, tmp);
-                        }
-                        success = true;
-                    }
-
-                }
-            }
-            return success;
+            return _colorTurningInitiator.initiateColorTurning(color,row,col,turner,buttonTable);
         }
     }
 }
+
