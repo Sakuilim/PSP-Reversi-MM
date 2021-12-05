@@ -24,76 +24,45 @@ namespace PSP_Reversi_MM_Winforms.Logic.DirectionLogic
                 {
                     if (_directionChecker.checkDirection(color, row, col, direction, buttonTable) > 0)
                     {
-                        int foundLines = _directionChecker.checkDirection(color, row, col, direction, buttonTable);
-                        switch (direction)
-                        {
-
-                            case "topLeft":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.leftModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-                                break;
-                            case "topCenter":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.emptyModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-                                break;
-                            case "topRight":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.rightModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-                                break;
-                            case "rightCenter":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.rightModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-                                break;
-                            case "bottomRight":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.rightModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-
-                                break;
-                            case "bottomCenter":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.emptyModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-                                break;
-                            case "bottomLeft":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.leftModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-                                break;
-                            case "leftCenter":
-                                if (turner)
-                                {
-                                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.leftModifier, buttonTable, foundLines);
-                                }
-                                success = true;
-                                break;
-                            default:
-                                MessageBox.Show("Error: unidentified direction.");
-                                success = false;
-                                break;
-                        }
+                        success = colorSwitcher(color, row, col, turner, direction, buttonTable);
                     }
                 }
             }
             return success;
+        }
+        private bool colorSwitcher(string color, int row, int col, bool turner, string direction, ButtonTable buttonTable)
+        {
+            int foundLines = _directionChecker.checkDirection(color, row, col, direction, buttonTable);
+            switch (direction)
+            {
+                case "topLeft":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.leftModifier, turner, buttonTable, foundLines);
+                    return true;
+                case "topCenter":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.emptyModifier, turner, buttonTable, foundLines);
+                    return true;
+                case "topRight":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.downModifier, SideModifiers.rightModifier, turner, buttonTable, foundLines);
+                    return true;
+                case "rightCenter":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.rightModifier, turner, buttonTable, foundLines);
+                    return true;
+                case "bottomRight":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.rightModifier, turner, buttonTable, foundLines);
+                    return true;
+                case "bottomCenter":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.emptyModifier, turner, buttonTable, foundLines);
+                    return true;
+                case "bottomLeft":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.upModifier, SideModifiers.leftModifier, turner, buttonTable, foundLines);
+                    return true;
+                case "leftCenter":
+                    _colorTurningLogic.colorTurner(color, row, col, SideModifiers.emptyModifier, SideModifiers.leftModifier, turner, buttonTable, foundLines);
+                    return true;
+                default:
+                    MessageBox.Show("Error: unidentified direction.");
+                    return false;
+            }
         }
     }
 }
