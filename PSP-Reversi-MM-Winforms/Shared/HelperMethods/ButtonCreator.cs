@@ -25,8 +25,8 @@ namespace PSP_Reversi_MM_Winforms.Shared.HelperMethods
             _piecePlacer = piecePlacer;
             _log = log;
         }
-        Turns turns = new Turns();
-        public void executeClick(object? sender, ButtonTable buttonTable)
+        private readonly Turns turns = new Turns();
+        public void executeClick(object sender, ButtonTable buttonTable)
         {
             if (!BtnClick(sender, buttonTable))
             {
