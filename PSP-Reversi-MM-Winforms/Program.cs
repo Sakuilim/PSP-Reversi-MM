@@ -10,6 +10,7 @@ using PSP_Reversi_MM_Winforms.Logic.EndGameLogic;
 using PSP_Reversi_MM_Winforms.Logic.PieceLogic;
 using PSP_Reversi_MM_Winforms.Logic.SystemLogic;
 using PSP_Reversi_MM_Winforms.Shared;
+using PSP_Reversi_MM_Winforms.Shared.HelperMethods;
 using PSP_Reversi_MM_Winforms.Shared.Model;
 using Serilog;
 using System;
@@ -42,7 +43,6 @@ namespace PSP_Reversi_MM_Winforms
                 {
                     services.AddTransient<IInitiateGameSys, InitiateGameSys>();
                     services.AddTransient<ISystemInitializer, SystemInitializer>();
-                    services.AddTransient<ITurns, Turns>();
                     services.AddTransient<IColorTurningLogic, ColorTurningLogic>();
                     services.AddTransient<ILabelChangingLogic, LabelChangingLogic>();
                     services.AddTransient<IPiecePlacer, PiecePlacer>();
@@ -51,9 +51,11 @@ namespace PSP_Reversi_MM_Winforms
                     services.AddTransient<IColorLineChecker, ColorLineChecker>();
                     services.AddTransient<IArrayLineChecker, ArrayLineChecker>();
                     services.AddTransient<IColorTurningInitiator, ColorTurningInitiator>();
+                    services.AddTransient<IButtonCreator, ButtonCreator>();
                     services.AddTransient<IPointLogic, PointLogic>();
                     services.AddTransient<IResultChecker,ResultChecker>();
                     services.AddTransient<ITurnLogic, TurnLogic>();
+                    services.AddSingleton<IButtonMakingHelper, ButtonMakingHelper>();
                     services.AddScoped<WelcomeWindow>();
                     services.AddScoped<IGameWindow, GameWindow>();
                     services.AddTransient<IColorTurningLogic, ColorTurningLogic>();

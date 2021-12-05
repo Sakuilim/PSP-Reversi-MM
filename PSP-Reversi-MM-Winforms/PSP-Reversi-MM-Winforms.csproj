@@ -41,7 +41,6 @@
   <ItemGroup>
     <Folder Include="Constants\" />
     <Folder Include="Resources\Pictures\" />
-    <Folder Include="Shared\ControlMethods\" />
   </ItemGroup>
 
 </Project>

@@ -6,6 +6,7 @@ using PSP_Reversi_MM_Winforms.Logic.PieceLogic;
 using PSP_Reversi_MM_Winforms.Model;
 using PSP_Reversi_MM_Winforms.Properties;
 using PSP_Reversi_MM_Winforms.Shared;
+using PSP_Reversi_MM_Winforms.Shared.HelperMethods;
 using PSP_Reversi_MM_Winforms.Shared.Model;
 using System;
 using System.Collections;
@@ -18,21 +19,13 @@ namespace PSP_Reversi_MM_Winforms.Logic
 {
     public class InitiateGameSys : IInitiateGameSys
     {
-        private readonly ILogger _log;
-        private readonly IPiecePlacer _piecePlacer;
-        private readonly ILabelChangingLogic _labelChangingLogic;
-        private readonly ITurns _turns;
-        private readonly ITurnLogic _turnLogic;
-        private readonly IPointLogic _pointLogic;
+        private readonly IButtonCreator _buttonCreator;
+        private readonly IButtonMakingHelper _buttonMakingHelper;
 
-        public InitiateGameSys(IPointLogic pointLogic, ITurnLogic turnLogic, ITurns turns, ILabelChangingLogic labelChangingLogic, IPiecePlacer piecePlacer, ILogger<InitiateGameSys> log)
+        public InitiateGameSys(IButtonCreator buttonCreator, IButtonMakingHelper buttonMakingHelper)
         {
-            _pointLogic = pointLogic;
-            _turnLogic = turnLogic;
-            _turns = turns;
-            _labelChangingLogic = labelChangingLogic;
-            _piecePlacer = piecePlacer;
-            _log = log;
+            _buttonCreator = buttonCreator;
+            _buttonMakingHelper = buttonMakingHelper;
 
         }
         public void print_Table(ButtonTable buttonTable)
@@ -41,51 +34,17 @@ namespace PSP_Reversi_MM_Winforms.Logic
             {
                 for (int y = 0; y < buttonTable.Leds.GetUpperBound(1) + 1; y++)
                 {
-                    if (x == 3 && y == 3 || x == 4 && y == 4)
-                    {
-                        buttonTable.Leds[x, y] = ButtonMaker.MakeWhiteLEDButton(buttonTable.Leds[x, y], x, y);
-                    }
-                    else if (x == 3 && y == 4 || x == 4 && y == 3)
-                    {
-                        buttonTable.Leds[x, y] = ButtonMaker.MakeBlackLEDButton(buttonTable.Leds[x, y], x, y);
-                    }
-                    else
-                    {
-                        buttonTable.Leds[x, y] = ButtonMaker.MakeLEDButton(buttonTable.Leds[x, y], x, y);
-                    }
-                    buttonTable.Leds[x, y].Click += (sender, EventArgs) =>
-                    {
-                        if (!BtnClick(sender, buttonTable))
-                        {
-                            _pointLogic.PointChecker(buttonTable);
-                            GameWindow obj = (GameWindow)Application.OpenForms["GameWindow"];
-                            obj.Close();
-                        }
-                    };
+                    _buttonMakingHelper.createButtonTable(buttonTable,x,y);
+                    buttonTable.Leds[x, y].Click += startAction(buttonTable);
                 }
             }
         }
-        private bool BtnClick(object sender, ButtonTable buttonTable)
+        private EventHandler startAction(ButtonTable buttonTable)
         {
-            LEDButton myButton = sender as LEDButton;
-            string[] coord = myButton.Name.Split(':');
-            int y = Int32.Parse(coord[0]);
-            int x = Int32.Parse(coord[1]);
-            string color = _labelChangingLogic.getLabel(_turns.currentTurn);
-            string placePiece = _piecePlacer.PlacePiece(color, x, y, buttonTable);
-            if (placePiece == "legal")
+            return (sender, EventArgs) =>
             {
-                _log.LogInformation(" { color } made a move", color);
-                _turns.currentTurn = _turnLogic.TurnIncreaser(_turns.currentTurn);
-                color = _labelChangingLogic.getLabel(_turns.currentTurn);
-                GameWindow.label2.Text = color;
-                return true;
-            }
-            else if (placePiece == "end")
-            {
-                return false;
-            }
-            return true;
+                _buttonCreator.executeClick(sender, buttonTable);
+            };
         }
     }
 }
