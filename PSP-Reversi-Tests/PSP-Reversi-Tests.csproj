@@ -25,4 +25,8 @@
     <Folder Include="LogicTests\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PSP-Reversi-MM-Winforms\PSP-Reversi-MM-Winforms.csproj" />
+  </ItemGroup>
+
 </Project>

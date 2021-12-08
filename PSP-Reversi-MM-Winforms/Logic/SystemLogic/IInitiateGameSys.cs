@@ -6,6 +6,6 @@ namespace PSP_Reversi_MM_Winforms.Logic
 {
     public interface IInitiateGameSys
     {
-        void print_Table(ButtonTable buttonTable);
+        ButtonTable print_Table(ButtonTable buttonTable);
     }
 }
