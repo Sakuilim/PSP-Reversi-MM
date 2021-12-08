@@ -28,7 +28,7 @@ namespace PSP_Reversi_MM_Winforms.Logic
             _buttonMakingHelper = buttonMakingHelper;
 
         }
-        public void print_Table(ButtonTable buttonTable)
+        public ButtonTable print_Table(ButtonTable buttonTable)
         {
             for (int x = 0; x < buttonTable.Leds.GetUpperBound(0) + 1; x++)
             {
@@ -38,6 +38,7 @@ namespace PSP_Reversi_MM_Winforms.Logic
                     buttonTable.Leds[x, y].Click += startAction(buttonTable);
                 }
             }
+            return buttonTable;
         }
         private EventHandler startAction(ButtonTable buttonTable)
         {

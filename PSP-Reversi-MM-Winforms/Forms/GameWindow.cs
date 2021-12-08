@@ -39,8 +39,8 @@ namespace PSP_Reversi_MM_Winforms.Forms
         }
         private ButtonTable startGame()
         {
-            _initiateGameSys.print_Table(buttonTable);
-            return buttonTable;
+            
+            return _initiateGameSys.print_Table(buttonTable);
         }
         private void startBtn_Click(object sender, EventArgs e)
         {

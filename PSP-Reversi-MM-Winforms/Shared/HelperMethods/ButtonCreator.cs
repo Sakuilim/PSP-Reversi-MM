@@ -45,7 +45,7 @@ namespace PSP_Reversi_MM_Winforms.Shared.HelperMethods
             string placePiece = _piecePlacer.PlacePiece(color, x, y, buttonTable);
             if (placePiece == "legal")
             {
-                _log.LogInformation(" { color } made a move", color);
+                _log.LogInformation(" { color } made a move {x} {y}", color, x, y);
                 turns.currentTurn = _turnLogic.TurnIncreaser(turns.currentTurn);
                 color = _labelChangingLogic.getLabel(turns.currentTurn);
                 GameWindow.label2.Text = color;
