@@ -8,7 +8,7 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
 {
     public class ArrayLineChecker : IArrayLineChecker
     {
-        public List<LEDButton> makeArrayOfLine(string color, int newRow, int newCol, int rowModifier, int colModifier, ButtonTable buttonTable)
+        public List<LEDButton> makeArrayOfLine(int newRow, int newCol, int rowModifier, int colModifier, ButtonTable buttonTable)
         {
             List<LEDButton> array = new List<LEDButton>();
 
@@ -27,7 +27,6 @@ namespace PSP_Reversi_MM_Winforms.Logic.PieceLogic
                 array.Add(buttonTable.Leds[newRow, newCol]);
                 do
                 {
-
                     newRow += rowModifier;
                     newCol += colModifier;
                     if (newRow < 0 || newRow >= 8 || newCol < 0 || newCol >= 8)

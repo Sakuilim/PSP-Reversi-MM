@@ -5,6 +5,6 @@ namespace PSP_Reversi_MM_Winforms.Logic
 {
     public interface IColorTurningLogic
     {
-        void colorTurner(string color, int newRow, int newCol, int rowModifier, int colModifier, bool turner, ButtonTable buttonTable, int howMany);
+        void colorTurner(string color, int newRow, int newCol, int rowModifier, int colModifier, ButtonTable buttonTable, int howMany);
     }
 }
