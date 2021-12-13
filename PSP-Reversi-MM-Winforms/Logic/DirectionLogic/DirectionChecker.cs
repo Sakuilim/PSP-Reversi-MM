@@ -24,28 +24,28 @@ namespace PSP_Reversi_MM_Winforms.Logic.DirectionLogic
             switch (direction)
             {
                 case "topLeft":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.downModifier, SideModifiers.leftModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.downModifier, SideModifiers.leftModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 case "topCenter":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.downModifier, SideModifiers.emptyModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.downModifier, SideModifiers.emptyModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 case "topRight":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.downModifier, SideModifiers.rightModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.downModifier, SideModifiers.rightModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 case "rightCenter":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.emptyModifier, SideModifiers.rightModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.emptyModifier, SideModifiers.rightModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 case "bottomRight":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.upModifier, SideModifiers.rightModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.upModifier, SideModifiers.rightModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 case "bottomCenter":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.upModifier, SideModifiers.emptyModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.upModifier, SideModifiers.emptyModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 case "bottomLeft":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.upModifier, SideModifiers.leftModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.upModifier, SideModifiers.leftModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 case "leftCenter":
-                    lineArray = _arrayLineChecker.makeArrayOfLine(color, newRow, newCol, SideModifiers.emptyModifier, SideModifiers.leftModifier, buttonTable);
+                    lineArray = _arrayLineChecker.makeArrayOfLine(newRow, newCol, SideModifiers.emptyModifier, SideModifiers.leftModifier, buttonTable);
                     return _colorLineChecker.checkArrayForColorLine(color, lineArray);
                 default:
                     MessageBox.Show("Error: unidentified direction.");

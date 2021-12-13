@@ -41,8 +41,8 @@ namespace PSP_Reversi_MM_Winforms
             Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) =>
                 {
-                    services.AddTransient<IInitiateGameSys, InitiateGameSys>();
-                    services.AddTransient<ISystemInitializer, SystemInitializer>();
+                    services.AddSingleton<IInitiateGameSys, InitiateGameSys>();
+                    services.AddSingleton<ISystemInitializer, SystemInitializer>();
                     services.AddTransient<IColorTurningLogic, ColorTurningLogic>();
                     services.AddTransient<ILabelChangingLogic, LabelChangingLogic>();
                     services.AddTransient<IPiecePlacer, PiecePlacer>();

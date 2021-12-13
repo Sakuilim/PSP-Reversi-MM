@@ -10,27 +10,25 @@ namespace PSP_Reversi_MM_Winforms.Logic
 {
     public class ColorTurningLogic : IColorTurningLogic
     {
-        public void colorTurner(string color, int newRow, int newCol, int rowModifier, int colModifier, bool turner, ButtonTable buttonTable, int howMany)
+        public void colorTurner(string color, int newRow, int newCol, int rowModifier, int colModifier, ButtonTable buttonTable, int howMany)
         {
-            if (turner)
+            do
             {
-                do
+                if (color == "black")
                 {
-                    if (color == "black")
-                    {
-                        ButtonConfigurator.configureButtonChanges("black", Resources.black_piece, buttonTable.Leds[newRow, newCol]);
-                    }
-                    else
-                    {
-                        ButtonConfigurator.configureButtonChanges("white", Resources.white_piece, buttonTable.Leds[newRow, newCol]);
-                    }
-                    newRow += rowModifier;
-                    newCol += colModifier;
+                    ButtonConfigurator.configureButtonChanges("black", Resources.black_piece, buttonTable.Leds[newRow, newCol]);
+                }
+                else
+                {
+                    ButtonConfigurator.configureButtonChanges("white", Resources.white_piece, buttonTable.Leds[newRow, newCol]);
+                }
+                newRow += rowModifier;
+                newCol += colModifier;
 
-                    howMany--;
+                howMany--;
 
-                } while (howMany >= 0);
-            }
+            } while (howMany >= 0);
+
         }
     }
 }
